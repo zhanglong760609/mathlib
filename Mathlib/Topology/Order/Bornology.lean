@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yaël Dillies
 -/
 import Mathlib.Topology.Bornology.Constructions
+import Mathlib.Topology.MetricSpace.Bounded
 
 /-!
 # Bornology of order-bounded sets
@@ -92,6 +93,17 @@ instance Pi.instIsOrderBornology {ι : Type*} {α : ι → Type*} [∀ i, Preord
   isBounded_iff_bddBelow_bddAbove s := by
     simp_rw [← forall_isBounded_image_eval_iff, bddBelow_pi, bddAbove_pi, ← forall_and,
       isBounded_iff_bddBelow_bddAbove]
+
+open Metric in
+lemma IsOrderBornology.of_isCompactIcc {α : Type*} [PseudoMetricSpace α] [Preorder α]
+    [CompactIccSpace α] [Nonempty α] (x : α)
+    (bddBelow_ball : ∀ r, BddBelow (closedBall x r))
+    (bddAbove_ball : ∀ r, BddAbove (closedBall x r)) : IsOrderBornology α where
+  isBounded_iff_bddBelow_bddAbove s := by
+    refine ⟨?_, fun hs ↦ Metric.isBounded_of_bddAbove_of_bddBelow hs.2 hs.1⟩
+    rw [Metric.isBounded_iff_subset_closedBall x]
+    rintro ⟨r, hr⟩
+    exact ⟨(bddBelow_ball _).mono hr, (bddAbove_ball _).mono hr⟩
 
 end Preorder
 
