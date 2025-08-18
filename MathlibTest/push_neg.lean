@@ -5,11 +5,20 @@ Authors: Alice Laroche, Frédéric Dupuis, Jireh Loreaux
 -/
 
 import Mathlib.Order.Defs.LinearOrder
+import Mathlib.Data.Set.Basic
 import Mathlib.Tactic.Push
 
 private axiom test_sorry : ∀ {α}, α
 set_option autoImplicit true
 variable {α β : Type} [LinearOrder β] {p q : Prop} {p' q' : α → Prop}
+
+example : ¬ False := by
+  push_neg
+  exact trivial
+
+example (h : ¬ True) : False := by
+  push_neg at h
+  exact h
 
 example : (¬p ∧ ¬q) → ¬(p ∨ q) := by
   intro h
