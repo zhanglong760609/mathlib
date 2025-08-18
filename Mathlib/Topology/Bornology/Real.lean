@@ -22,13 +22,10 @@ instance Real.instIsOrderBornology : IsOrderBornology ℝ :=
 
 namespace NNReal
 
-/-!
-Every instance is inherited from the corresponding structures on the reals.
--/
-
 instance : OrderTopology ℝ≥0 :=
   orderTopology_of_ordConnected (t := Ici 0)
 
-instance : IsOrderBornology ℝ≥0 := .of_isCompactIcc 0 (by simp) (by simp [closedBall_eq_Icc])
+instance : IsOrderBornology ℝ≥0 := .of_isCompactIcc 0 (by simp) fun r ↦ by
+  obtain hr | hr := le_or_gt 0 r <;> simp [closedBall_zero_eq_Icc, *]
 
 end NNReal
