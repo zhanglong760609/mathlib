@@ -96,7 +96,7 @@ instance Pi.instIsOrderBornology {ι : Type*} {α : ι → Type*} [∀ i, Preord
 
 open Metric in
 lemma IsOrderBornology.of_isCompactIcc {α : Type*} [PseudoMetricSpace α] [Preorder α]
-    [CompactIccSpace α] [Nonempty α] (x : α)
+    [CompactIccSpace α] (x : α)
     (bddBelow_ball : ∀ r, BddBelow (closedBall x r))
     (bddAbove_ball : ∀ r, BddAbove (closedBall x r)) : IsOrderBornology α where
   isBounded_iff_bddBelow_bddAbove s := by
