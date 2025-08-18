@@ -882,11 +882,7 @@ protected theorem image {q : ℚ_[p]} : q ≠ 0 → ∃ n : ℤ, ‖q‖ = ↑((
     ⟨n, by rw [← hn]; rfl⟩
 
 protected theorem is_rat (q : ℚ_[p]) : ∃ q' : ℚ, ‖q‖ = q' := by
-  classical
-  exact if h : q = 0 then ⟨0, by simp [h]⟩
-  else
-    let ⟨n, hn⟩ := padicNormE.image h
-    ⟨_, hn⟩
+  tauto
 
 /-- `ratNorm q`, for a `p`-adic number `q` is the `p`-adic norm of `q`, as rational number.
 
