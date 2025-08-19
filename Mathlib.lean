@@ -2884,6 +2884,7 @@ import Mathlib.Computability.ContextFreeGrammar
 import Mathlib.Computability.DFA
 import Mathlib.Computability.Encoding
 import Mathlib.Computability.EpsilonNFA
+import Mathlib.Computability.GNFA
 import Mathlib.Computability.Halting
 import Mathlib.Computability.Language
 import Mathlib.Computability.MyhillNerode
